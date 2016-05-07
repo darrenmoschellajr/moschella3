@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Sessions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sessiondate</th>
+      <th>Truck</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inventorysession.each do |inventorysession| %>
+      <tr>
+        <td><%= inventorysession.sessiondate %></td>
+        <td><%= inventorysession.truck.name %></td>
+        <td><%= link_to 'Show', inventorysession %></td>
+        <td><%= link_to 'Edit', edit_inventorysession_path(inventorysession) %></td>
+        <td><%= link_to 'Destroy', inventorysession, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% form_tag details_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<%= link_to 'New Session', new_inventorysession_path %>
